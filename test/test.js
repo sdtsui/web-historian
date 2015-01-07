@@ -25,12 +25,12 @@ describe("Node Server Request Listener Function", function() {
 
   it("Should answer GET requests for /", function(done) {
     var req = new stubs.Request("/", "GET");
-
     handler.handleRequest(req, res);
+    console.log('THIS IS THE RES', res);
 
     waitForThen(
       function() { return res._ended; },
-      function(){
+      function() {
         expect(res._responseCode).to.equal(200);
         expect(res._data.toString().match(/<input/)).to.be.ok; // the resulting html should have an input tag
         done();

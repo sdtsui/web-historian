@@ -29,7 +29,10 @@ exports.Response = function() {
   this._headers = null;
   this._data = "";
   var self = this;
-  this.write = function (data) { self._data += data; }
+  this.write = function (data) {
+    self._data += data;
+    console.log('this', this);
+  }
   this.writeHead = function(responseCode, headers) {
     self._responseCode = responseCode;
     self._headers = headers;

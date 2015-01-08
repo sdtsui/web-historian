@@ -6,32 +6,52 @@ var http = require('http');
 var fs = require('fs');
 var _ = require('underscore');
 
+// var sendResponse = function(statusCode, headers, cb, cbPath, cbEncoding) {
+//   defaultHeaders['Content-Type'] = headers;
+//   if (cb) {
+//   }
+// };
+
 var requestType = {
   'GET': function(request, response){
+    //**Refactor two cases, 404s
     // console.log('request', request);
     var statusCode = 200;
-    defaultHeaders['Content-Type'] = 'text/plain';
-    response.writeHead(statusCode, defaultHeaders);
+
     if (request.url === "/"){
       defaultHeaders['Content-Type'] = 'text/html';
       response.writeHead(statusCode, defaultHeaders);
-      var indexPath = archive.paths['index'];
-      fs.readFile(indexPath, 'UTF-8', function(err, data){
+      fs.readFile(archive.paths['index'], 'UTF-8', function(err, data){
         response.end(data);
       });
     }
+
+    defaultHeaders['Content-Type'] = 'text/plain';
+    response.writeHead(statusCode, defaultHeaders);
     var directory = archive.paths.archivedSites + request.url;
-    fs.readFile(directory, 'UTF-8', function(err, data){
-      response.end(data);
-    });
+    // use fs.open() instead of fs.exists() to check for existence;
+      // need to learn how to handle exceptions.
+    var dirExists = fs.exists(directory, function(bool){ return bool; });
+    var logTxt = dirExists + ', ' + directory;
+    fs.appendFile(archive.paths['log'], logTxt);
+    if (!!dirExists) {
+      fs.readFile(directory, 'UTF-8', function(err, data){
+        response.end(data);
+      });
+    } else {
+
+    }
+
   },
 
   'POST': function(request, response){
     var archiveLoc = archive.paths['list'];
-
     var postingAddress = request._postData['url'] + '\n';
+
+    //error logging
     var logTxt = archiveLoc + ', ' + postingAddress;
     fs.appendFile(archive.paths['log'], logTxt);
+
     fs.appendFile(archiveLoc, postingAddress, function(error) {
       if (error) {
         console.log('error is', error);
@@ -41,8 +61,7 @@ var requestType = {
     });
     // response should affect the client
     var statusCode = 302;
-    var loadPath = archive.paths['loading'];
-    fs.readFile(loadPath, 'UTF-8', function(err, data) {
+    fs.readFile(archive.paths['loading'], 'UTF-8', function(err, data) {
       defaultHeaders['Content-Type'] = 'text/html';
       response.writeHead(statusCode, defaultHeaders);
       response.end(data);

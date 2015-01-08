@@ -5,6 +5,7 @@ var defaultHeaders = helpers.headers;
 var http = require('http');
 var fs = require('fs');
 var _ = require('underscore');
+// var parser = document.createElement('a');
 
 // var sendResponse = function(statusCode, headers, cb, cbPath, cbEncoding) {
 //   defaultHeaders['Content-Type'] = headers;
@@ -12,14 +13,8 @@ var _ = require('underscore');
 //   }
 // };
 
-var urlType = {
-  "/": true
-};
-
 var requestType = {
   'GET': function(request, response){
-    //**Refactor two cases, 404s
-    // console.log('request', request);
     var statusCode = 200;
 
     if (request.url === "/"){
@@ -28,22 +23,8 @@ var requestType = {
       fs.readFile(archive.paths['index'], 'UTF-8', function(err, data){
         response.end(data);
       });
-    }
-
-    defaultHeaders['Content-Type'] = 'text/plain';
-    response.writeHead(statusCode, defaultHeaders);
-    var directory = archive.paths.archivedSites + request.url;
-    // use fs.open() instead of fs.exists() to check for existence;
-      // need to learn how to handle exceptions.
-    var dirExists = fs.exists(directory, function(bool){ return bool; });
-    var logTxt = dirExists + ', ' + directory;
-    fs.appendFile(archive.paths['log'], logTxt);
-    if (!!dirExists) {
-      fs.readFile(directory, 'UTF-8', function(err, data){
-        response.end(data);
-      });
     } else {
-
+      archive.isUrlInList(request, response, defaultHeaders);
     }
 
   },
@@ -79,11 +60,7 @@ var requestType = {
 }
 
 exports.handleRequest = function (req, res) {
-  if (urlType[req.url]) {
-    if (requestType[req.method]) {
-      requestType[req.method](req, res);
-    }
-  } else {
-    requestType['404'](req, res);
+  if (requestType[req.method]) {
+    requestType[req.method](req, res);
   }
 };

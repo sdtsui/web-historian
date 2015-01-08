@@ -48,8 +48,11 @@ describe("Node Server Request Listener Function", function() {
 
     // Request it back.
     var req = new stubs.Request("/" + fixtureName, "GET");
+    // parser = req.url; parser.hostname -> google.com
     // console.log("req.url: ", req.url);
     // console.log('THIS IS THE RES: before', res);
+    // archive.isUrlInList(req,res);
+    // console.log('after test');
     handler.handleRequest(req, res);
     waitForThen(
       function() { return res._ended; },

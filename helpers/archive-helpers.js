@@ -1,6 +1,8 @@
 var fs = require('fs');
 var path = require('path');
 var _ = require('underscore');
+// var parser = document.createElement('a');
+
 
 /*
  * You will need to reuse the same paths many times over in the course of this sprint.
@@ -31,7 +33,29 @@ exports.initialize = function(pathsObj){
 exports.readListOfUrls = function(){
 };
 
-exports.isUrlInList = function(){
+exports.isUrlInList = function(request, response, defaultHeaders){
+  // path = www.google.com
+  //if path is in sites.txt: if so, run cb some way
+  // parser.href = "http:/"+ request.url;
+  // var pathtoCheck = parser.hostname;
+  var fileToCheck =__dirname+ "/../archives/sites" + request.url;
+  console.log('fileToCheck:   ', fileToCheck);
+  fs.open(fileToCheck, 'r', function(err, fd){
+    if (err){
+      console.log('error thrown', err);
+      response.writeHead(404, defaultHeaders);
+      response.end();
+    } else {
+      console.log('no error, receive data');
+      fs.readFile(fileToCheck, "UTF-8", function(err, data){
+        defaultHeaders['Content-Type'] = 'text/html';
+        response.writeHead(200, defaultHeaders);
+        response.end(data);
+      });
+    }
+  });
+  // /www.google.com
+  // case: is in sites.txt, cb = "making a new response, with data"
 };
 
 exports.addUrlToList = function(){

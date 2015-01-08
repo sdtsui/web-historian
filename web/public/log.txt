@@ -8,3 +8,11 @@
 undefined, /Users/HR10/2014-12-web-historian/archives/sites/undefined, /Users/HR10/2014-12-web-historian/archives/sites/www.google.com/Users/HR10/2014-12-web-historian/test/testdata/sites.txt, www.example.com
 undefined, /Users/HR10/2014-12-web-historian/archives/sites/arglebargleundefined, /Users/HR10/2014-12-web-historian/archives/sites/undefined, /Users/HR10/2014-12-web-historian/archives/sites/www.google.com/Users/HR10/2014-12-web-historian/test/testdata/sites.txt, www.example.com
 undefined, /Users/HR10/2014-12-web-historian/archives/sites/arglebargleundefined, /Users/HR10/2014-12-web-historian/archives/sites/undefined, /Users/HR10/2014-12-web-historian/archives/sites/favicon.icoundefined, /Users/HR10/2014-12-web-historian/archives/sites/undefined, /Users/HR10/2014-12-web-historian/archives/sites/undefined, /Users/HR10/2014-12-web-historian/archives/sites/favicon.icoundefined, /Users/HR10/2014-12-web-historian/archives/sites/favicon.icoundefined, /Users/HR10/2014-12-web-historian/archives/sites/favicon.icoundefined, /Users/HR10/2014-12-web-historian/archives/sites/favicon.icoundefined, /Users/HR10/2014-12-web-historian/archives/sites//Users/HR10/2014-12-web-historian/test/testdata/sites.txt, www.example.com
+undefined, /Users/HR10/2014-12-web-historian/archives/sites//Users/HR10/2014-12-web-historian/test/testdata/sites.txt, www.example.com
+undefined, /Users/HR10/2014-12-web-historian/archives/sites//Users/HR10/2014-12-web-historian/test/testdata/sites.txt, www.example.com
+undefined, /Users/HR10/2014-12-web-historian/archives/sites//Users/HR10/2014-12-web-historian/test/testdata/sites.txt, www.example.com
+undefined, /Users/HR10/2014-12-web-historian/archives/sites//Users/HR10/2014-12-web-historian/test/testdata/sites.txt, www.example.com
+undefined, /Users/HR10/2014-12-web-historian/archives/sites//Users/HR10/2014-12-web-historian/test/testdata/sites.txt, www.example.com
+/Users/HR10/2014-12-web-historian/test/testdata/sites.txt, www.example.com
+/Users/HR10/2014-12-web-historian/test/testdata/sites.txt, www.example.com
+/Users/HR10/2014-12-web-historian/test/testdata/sites.txt, www.example.com

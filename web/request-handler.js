@@ -4,13 +4,16 @@ var helpers = require('./http-helpers.js');
 var defaultHeaders = helpers.headers;
 var http = require('http');
 var fs = require('fs');
+var _ = require('underscore');
 
 var requestType = {
   'GET': function(request, response){
     var statusCode = 200;
     response.writeHead(statusCode, defaultHeaders);
-    response.write('<input>');
-    response.end();
+    var directory = archive.paths.archivedSites + request.url;
+    fs.readFile(directory, 'utf8', function(err, data){
+      response.end(data);
+    });
   },
 
   'POST': function(request, response){
@@ -28,8 +31,5 @@ exports.handleRequest = function (req, res) {
   if (requestType[req.method]) {
     requestType[req.method](req, res);
   }
-
-  // what does this do?
-  res.end(archive.paths.list);
 };
 

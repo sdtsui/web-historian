@@ -12,6 +12,10 @@ var _ = require('underscore');
 //   }
 // };
 
+var urlType = {
+  "/": true
+};
+
 var requestType = {
   'GET': function(request, response){
     //**Refactor two cases, 404s
@@ -66,12 +70,20 @@ var requestType = {
       response.writeHead(statusCode, defaultHeaders);
       response.end(data);
     })
+  },
+
+  '404': function(request, response) {
+    response.writeHead(404, defaultHeaders);
+    response.end();
   }
 }
 
 exports.handleRequest = function (req, res) {
-  console.log('req');
-  if (requestType[req.method]) {
-    requestType[req.method](req, res);
+  if (urlType[req.url]) {
+    if (requestType[req.method]) {
+      requestType[req.method](req, res);
+    }
+  } else {
+    requestType['404'](req, res);
   }
 };

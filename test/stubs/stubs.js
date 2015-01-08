@@ -31,7 +31,7 @@ exports.Response = function() {
   var self = this;
   this.write = function (data) {
     self._data += data;
-    console.log('this', this);
+    // console.log('this', this);
   }
   this.writeHead = function(responseCode, headers) {
     self._responseCode = responseCode;

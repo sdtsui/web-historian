@@ -49,12 +49,12 @@ describe("Node Server Request Listener Function", function() {
     // Request it back.
     var req = new stubs.Request("/" + fixtureName, "GET");
     // console.log("req.url: ", req.url);
-    console.log('THIS IS THE RES: before', res);
+    // console.log('THIS IS THE RES: before', res);
     handler.handleRequest(req, res);
     waitForThen(
       function() { return res._ended; },
       function(){
-        console.log("THIS IS THE RES: 'after' :" , res);
+        // console.log("THIS IS THE RES: 'after' :" , res);
         expect(res._responseCode).to.equal(200);
         expect(res._data.toString().match(/google/)).to.be.ok; // the resulting html should have the text "google"
 

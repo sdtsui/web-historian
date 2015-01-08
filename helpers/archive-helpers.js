@@ -1,4 +1,5 @@
 var fs = require('fs');
+var archive = require('../helpers/archive-helpers');
 var path = require('path');
 var _ = require('underscore');
 // var parser = document.createElement('a');
@@ -30,7 +31,13 @@ exports.initialize = function(pathsObj){
 // The following function names are provided to you to suggest how you might
 // modularize your code. Keep it clean!
 
-exports.readListOfUrls = function(){
+exports.readListOfUrls = function(cb){
+  // cb must take an array
+  fs.readFile(archive.paths['list'], 'UTF-8', function(err, data){
+    var allUrls = data.split('\n');
+    console.log('allUrls', allUrls);
+    cb(allUrls);
+  });
 };
 
 exports.isUrlInList = function(request, response, defaultHeaders){
@@ -42,7 +49,6 @@ exports.isUrlInList = function(request, response, defaultHeaders){
   console.log('fileToCheck:   ', fileToCheck);
   fs.open(fileToCheck, 'r', function(err, fd){
     if (err){
-      console.log('error thrown', err);
       response.writeHead(404, defaultHeaders);
       response.end();
     } else {

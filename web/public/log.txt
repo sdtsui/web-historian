@@ -16,3 +16,6 @@ undefined, /Users/HR10/2014-12-web-historian/archives/sites//Users/HR10/2014-12-
 /Users/HR10/2014-12-web-historian/test/testdata/sites.txt, www.example.com
 /Users/HR10/2014-12-web-historian/test/testdata/sites.txt, www.example.com
 /Users/HR10/2014-12-web-historian/test/testdata/sites.txt, www.example.com
+/Users/HR10/2014-12-web-historian/test/testdata/sites.txt, www.example.com
+/Users/HR10/2014-12-web-historian/test/testdata/sites.txt, www.example.com
+/Users/HR10/2014-12-web-historian/test/testdata/sites.txt, www.example.com
